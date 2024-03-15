@@ -1,0 +1,8 @@
+.bg-light {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+}
+img {
+  transform: scale(0.9, 1);
+}

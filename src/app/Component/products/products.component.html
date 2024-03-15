@@ -1,0 +1,63 @@
+<div class="container">
+  <h4>Welcome {{ ClientName || "Customer" }}</h4>
+  <button
+    class="btn"
+    (click)="handeToggle()"
+    [class]="!showImg ? 'btn-info' : 'btn-danger'"
+  >
+    {{ showImg ? "hidden Img" : "Show Img" }}
+  </button>
+</div>
+<div class="flex-container">
+  @for(product of productcarts;track $index){
+
+  <div
+    class="card"
+    style="width: 15rem"
+    appCartHover
+    [ngStyle]="
+      product.quantity > 3
+        ? { border: '2px solid yellow' }
+        : { border: '2px dashed red' }
+    "
+  >
+    <img
+      [src]="product.imgURL"
+      class="card-img-top"
+      alt="..."
+      [class]="showImg ? 'show' : 'hidden'"
+    />
+    <div class="card-body">
+      <h6 class="card-title">{{ product.name }}</h6>
+      <h6 class="card-text">
+        {{ product.price | currency : "EGP" : "symbol" : "1.0-2" }}
+      </h6>
+      <p>Quantity: {{ product.quantity }}</p>
+      <p class="text-danger fs-6">
+        {{ product.createdAt | date : "mediumDate" }}
+      </p>
+
+      <button
+        href="#"
+        class="btn btn-primary"
+        (click)="Buy(product)"
+        [disabled]="product.quantity <= 0"
+      >
+        Add To Cart
+      </button>
+      <br />
+      @switch(product.quantity){ @case (0) {
+      <p class="text-danger fs-5">out of stock</p>
+      } @case(1){
+      <p class="text-danger fs-5">Only 1 Available</p>
+      } @case(2){
+      <p class="text-warning fs-5">Only 2 Available</p>
+      } @case(3){
+      <p class="text-warning fs-5">Only 3 Available</p>
+      } @default {
+      <p class="text-success fs-5">in stock</p>
+      } }
+    </div>
+  </div>
+  }
+</div>

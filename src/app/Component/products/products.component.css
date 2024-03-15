@@ -1,0 +1,23 @@
+.flex-container {
+  display: flex;
+  /* background-color: DodgerBlue; */
+  flex-flow: row wrap;
+}
+h1 {
+  scale: 0.8;
+}
+.flex-container > div {
+  background-color: #f1f1f1;
+  margin: 5px auto;
+  /* scale: 0.9; */
+  /* font-size: 30px; */
+}
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
+.container {
+  text-align: center;
+}
